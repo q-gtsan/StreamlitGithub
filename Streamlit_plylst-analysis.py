@@ -11,7 +11,7 @@ import pandas as pd
 
 # Connecting to SQL-Database
 
-df = pd.read_csv("/Users/q.t./Documents/GitHub/StreamlitGithub/plylst_wdr2.csv", sep=",")
+df = pd.read_csv("plylst_wdr2.csv", sep=",")
 
 # Data Aggregation / Editing / Data Cleaning
 # df["Datum"] = pd.to_datetime(df["Datum"], format="%Y-%m-%d %H:%M")
