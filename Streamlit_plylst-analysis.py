@@ -1,11 +1,5 @@
 import streamlit as st
 import pandas as pd
-import check_duplicates as cd
-import plotly.express as px
-import plotly.graph_objs as go
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
 
 #packages needed
 #streamlit
