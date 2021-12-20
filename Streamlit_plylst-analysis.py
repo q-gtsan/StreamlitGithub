@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import seaborn as sns
 
 ##Tasks:
@@ -79,11 +79,11 @@ ts_first = df_select[df_select["Interpret"] == first_1][["Datum","Song","Stunde"
 ts_first_cnt_0 = ts_first["Stunde"].value_counts()
 ts_first_cnt_1 = ts_first_cnt_0.reset_index()
 
-fig = plt.figure(figsize=(12, 6))
+#fig = plt.figure(figsize=(12, 6))
 sns.barplot(x = "index", y = "Stunde", data = ts_first_cnt_1)
 #print(ts_first_cnt_1.columns)
 st.pyplot(fig)
 
-fig = plt.figure(figsize=(12, 9))
+#fig = plt.figure(figsize=(12, 9))
 sns.stripplot(x = "Tag_name", y = "Stunde", data = ts_first)
-st.pyplot(fig)
+#st.pyplot(fig)
