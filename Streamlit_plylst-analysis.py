@@ -1,7 +1,11 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-
+##Tasks:
+##Multiselect of top Artist and their songs
+##Recoding: https://pythonwife.com/seaborn-with-streamlit/ (Frame)
 # Connecting to SQL-Database
 
 df = pd.read_csv("plylst_wdr2.csv", sep=",")
@@ -17,6 +21,7 @@ df["Monat"] = df.Datum.dt.month
 df["Tag"] = df.Datum.dt.day
 df["Stunde"] = df.Datum.dt.hour
 df["Minute"] = df.Datum.dt.minute
+df["Tag_name"] = df.Datum.dt.strftime('%a')
 
 
 
@@ -57,8 +62,28 @@ st.table(df_select["Song"].value_counts().head())
 st.header("Most played Artist")
 st.table(df_select["Interpret"].value_counts().head())
 st.header("Most played Artist and Song")
-df_group = df_select.groupby(["Interpret"]).Song.value_counts().sort_index(ascending=False).sort_values(ascending=False)
+
+##Multiselect of top Artist and their songs
+df_group = df_select.groupby(["Interpret"],observed=True).Song.value_counts().sort_index(ascending=False).sort_values(ascending=False)
 st.table(df_group.head(30))
 
 # Descriptive Analysis
 
+
+
+st.header("Most played Artist as strip plot")
+first_0 = df_select["Interpret"].value_counts().head(1).reset_index()
+first_1 = first_0["index"][0]
+st.write("Most played Artist: "+str(first_1))
+ts_first = df_select[df_select["Interpret"] == first_1][["Datum","Song","Stunde","Tag_name"]]
+ts_first_cnt_0 = ts_first["Stunde"].value_counts()
+ts_first_cnt_1 = ts_first_cnt_0.reset_index()
+
+fig = plt.figure(figsize=(12, 6))
+sns.barplot(x = "index", y = "Stunde", data = ts_first_cnt_1)
+#print(ts_first_cnt_1.columns)
+st.pyplot(fig)
+
+fig = plt.figure(figsize=(12, 9))
+sns.stripplot(x = "Tag_name", y = "Stunde", data = ts_first)
+st.pyplot(fig)
