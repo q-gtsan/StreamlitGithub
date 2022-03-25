@@ -2,7 +2,7 @@ import streamlit as st
 
 # Custom imports
 from multipage import MultiPage
-import firstPage, playlistPage
+import firstPage, playlistPage_streamlit
 
 # Create an instance of the app
 app = MultiPage()
