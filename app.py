@@ -11,7 +11,7 @@ app = MultiPage()
 st.title("Data Portfolio")
 # Add all your applications (pages) here
 app.add_page("Main", firstPage.app)
-app.add_page("Playlist_Project", playlistPage.app)
+app.add_page("Playlist_Project", playlistPage_streamlit.app)
 
 # The main app
 app.run()
